@@ -1,0 +1,45 @@
+{
+    "name": "tasq",
+    "description": "tasq language vscode support extension",
+    "author": "masnyjimmy",
+    "license": "ISC",
+    "version": "0.1.0",
+    "main": "./out/extension.js",
+    "engines": {
+        "vscode": "^1.105.0"
+    },
+    "activationEvents": [
+        "onLanguage:tasq"
+    ],
+    "contributes": {
+        "languages": [
+            {
+                "id": "tasq",
+                "filenames": ["tasq"]
+            }
+        ],
+        "configuration": {
+            "type": "object",
+            "title": "tasq configuration",
+            "properties": {
+                "tasq.maxNumberOfProblems": {
+                    "scope": "resource",
+                    "type": "number",
+                    "default": 100,
+                    "description": "Controls the maximum number of problems produced by the server."
+                }
+            }
+        }
+    },
+    "scripts": {
+        "compile": "tsc -b"
+    },
+    "dependencies": {
+        "vscode-languageclient": "^9.0.1"
+    },
+    "devDependencies": {
+        "@types/node": "^25.9.1",
+        "@types/vscode": "^1.105.0",
+        "typescript": "^6.0.3"
+    }
+}
