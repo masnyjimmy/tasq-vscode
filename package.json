@@ -11,11 +11,22 @@
     "activationEvents": [
         "onLanguage:tasq"
     ],
+    "categories": [
+        "Programming Languages"
+    ],
     "contributes": {
         "languages": [
             {
                 "id": "tasq",
-                "filenames": ["tasq"]
+                "filenames": ["tasq"],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "tasq",
+                "scopeName": "source.tasq",
+                "path": "./syntaxes/tasq.tmLanguage.json"
             }
         ],
         "configuration": {

@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json.schemastore.org/tmlanguage.json",
+  "name": "My Task Language",
+  "scopeName": "source.tasq",
+  "patterns": [
+    { "include": "#keywords" },
+    { "include": "#task-definition" },
+    { "include": "#parameters" },
+    { "include": "#strings" },
+    { "include": "#backtick-commands" }
+  ],
+  
+  "repository": {
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.tasq",
+          "match": "\\btask\\b"
+        }
+      ]
+    },
+    "task-definition": {
+      "patterns": [
+        {
+          "match": "\\btask\\s+([a-zA-Z_][a-zA-Z0-9_]*)",
+          "captures": {
+            "1": { "name": "entity.name.function.tasq" }
+          }
+        }
+      ]
+    },
+    "parameters": {
+      "patterns": [
+        {
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*:\\s*([a-zA-Z_][a-zA-Z0-9_]*)",
+          "captures": {
+            "1": { "name": "variable.parameter.tasq" },
+            "2": { "name": "support.type.tasq" }
+          }
+        }
+      ]
+    },
+    "strings": {
+      "name": "string.quoted.double.tasq",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.tasq",
+          "match": "\\\\."
+        }
+      ]
+    },
+    "backtick-commands": {
+      "name": "string.interpolated.tasq",
+      "begin": "`",
+      "end": "`",
+      "patterns": [
+        { "include": "#interpolation" }
+      ]
+    },
+    "interpolation": {
+      "name": "meta.interpolation.tasq",
+      "begin": "\\{\\{",
+      "beginCaptures": {
+        "0": { "name": "punctuation.definition.interpolation.begin.tasq" }
+      },
+      "end": "\\}\\}",
+      "endCaptures": {
+        "0": { "name": "punctuation.definition.interpolation.end.tasq" }
+      },
+      "patterns": [
+        {
+          "name": "variable.other.readwrite.tasq",
+          "match": "[a-zA-Z_][a-zA-Z0-9_]*"
+        }
+      ]
+    }
+  }
+}
