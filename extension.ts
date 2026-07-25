@@ -1,10 +1,11 @@
 import * as path from "path";
-import { workspace, ExtensionContext } from "vscode";
+import { workspace, ExtensionContext, commands, window } from "vscode";
 
 import {
     LanguageClient,
     LanguageClientOptions,
     ServerOptions,
+    State,
     TransportKind,
 } from 'vscode-languageclient/node';
 
@@ -32,6 +33,26 @@ export async function activate(context: ExtensionContext) {
     };
 
     client = new LanguageClient("tasq-lsp", serverOptions, clientOptions);
+
+    const stopCommand = commands.registerCommand("tasq.stopLanguageServer", async () => {
+        if(!client) {
+            window.showInformationMessage('Language client is not initialized.');
+            return;
+        }
+
+        if(client.state == State.Running) {
+            try {
+                await client.stop();
+                window.showInformationMessage('Language client stop succesfully');
+            } catch(error) {
+                window.showErrorMessage(`Failed to stop language server: ${error}`);
+            }
+        } else {
+            window.showInformationMessage('Language server is not running');
+        }
+    });
+
+    context.subscriptions.push(stopCommand);
 
     await client.start();
 }

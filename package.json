@@ -29,6 +29,12 @@
                 "path": "./syntaxes/tasq.tmLanguage.json"
             }
         ],
+        "commands": [
+            {
+                "command": "tasq.stopLanguageServer",
+                "title": "tasq: Stop language server"
+            }
+        ],
         "configuration": {
             "type": "object",
             "title": "tasq configuration",
