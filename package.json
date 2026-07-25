@@ -18,7 +18,9 @@
         "languages": [
             {
                 "id": "tasq",
-                "filenames": ["tasq"],
+                "filenames": [
+                    "tasq"
+                ],
                 "configuration": "./language-configuration.json"
             }
         ],
@@ -29,6 +31,62 @@
                 "path": "./syntaxes/tasq.tmLanguage.json"
             }
         ],
+        "semanticTokenTypes": [
+            {
+                "id": "decorator",
+                "description": "tasq attribute"
+            }
+        ],
+        "semanticTokenModifiers": [
+            {
+                "id": "attr_platform"
+            },
+            {
+                "id": "attr_doc"
+            },
+            {
+                "id": "attr_modifier"
+            },
+            {
+                "id": "attr_validation"
+            },
+            {
+                "id": "attr_script"
+            }
+        ],
+        "semanticTokenScopes": [
+            {
+                "language": "tasq",
+                "scopes": {
+                    "decorator.attrPlatform": [
+                        "entity.name.tag.tsq.platform"
+                    ],
+                    "decorator.attrDoc": [
+                        "comment.block.documentation.tsq"
+                    ],
+                    "decorator.attrModifier": [
+                        "storage.modifier.tsq"
+                    ],
+                    "decorator.attrValidation": [
+                        "support.type.property-name.tsq"
+                    ],
+                    "decorator.attrScript": [
+                        "string.unquoted.tsq.script"
+                    ]
+                }
+            }
+        ],
+        "configurationDefaults": {
+            "editor.semanticTokenColorCustomizations": {
+                "rules": {
+                    "decorator.attr_platform": "#9a5cb4",
+                    "decorator.attr_doc": "#4ec9b0",
+                    "decorator.attr_modifier": "#569cd6",
+                    "decorator.attr_validation": "#e5c07b",
+                    "decorator.attr_script": "#d19a66"
+                }
+            }
+        },
         "commands": [
             {
                 "command": "tasq.stopLanguageServer",
