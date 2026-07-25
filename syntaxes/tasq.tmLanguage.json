@@ -3,19 +3,26 @@
   "name": "My Task Language",
   "scopeName": "source.tasq",
   "patterns": [
-    { "include": "#keywords" },
+    { "include": "#strings" },
+    { "include": "#backtick-commands" },
     { "include": "#task-definition" },
     { "include": "#parameters" },
-    { "include": "#strings" },
-    { "include": "#backtick-commands" }
+    { "include": "#keywords" },
+    { "include": "#constants" },
+    { "include": "#types" },
+    { "include": "#numbers" },
+    { "include": "#punctuation" }
   ],
-  
   "repository": {
     "keywords": {
       "patterns": [
         {
           "name": "keyword.control.tasq",
-          "match": "\\btask\\b"
+          "match": "\\b(set|task|group|if|else)\\b"
+        },
+        {
+          "name": "keyword.operator.logical.tasq",
+          "match": "\\b(and|or|not)\\b"
         }
       ]
     },
@@ -40,6 +47,34 @@
         }
       ]
     },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.tasq",
+          "match": "\\b(true|false)\\b"
+        },
+        {
+          "name": "constant.language.null.tasq",
+          "match": "\\bnull\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "support.type.tasq",
+          "match": "\\b(string|flag|number)\\b"
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.tasq",
+          "match": "\\b\\d+(\\.\\d+)?\\b"
+        }
+      ]
+    },
     "strings": {
       "name": "string.quoted.double.tasq",
       "begin": "\"",
@@ -57,6 +92,14 @@
       "end": "`",
       "patterns": [
         { "include": "#interpolation" }
+      ]
+    },
+    "punctuation": {
+      "patterns": [
+        {
+          "name": "punctuation.separator.delimiter.tasq",
+          "match": ","
+        }
       ]
     },
     "interpolation": {
